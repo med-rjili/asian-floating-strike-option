@@ -7,41 +7,69 @@ A reproducible Python project for pricing an arithmetic-average floating-strike 
 ## Contract
 
 Under the risk-neutral measure:
-$
+$$
+
+$$
 dS_t=rS_t\,dt+\sigma S_t\,dW_t,\qquad S_0>0.
-$
+$$
+
+$$
 The arithmetic average and floating-strike put payoff are
-$
+$$
+
+$$
 A_T=\frac1T\int_0^T S_u\,du,\qquad (A_T-S_T)^+.
-$
+$$
+
+$$
 The time-zero value is
-$
+$$
+
+$$
 V_0=e^{-rT}\mathbb E^\mathbb Q[(A_T-S_T)^+].
-$
+$$
+
+$$
 
 ## PDE reduction
 
 Use homogeneity and the transformed state
-$
+$$
+
+$$
 x=-\frac{t}{T}\frac{A_t}{S_t},\qquad V(t,S,A)=S f(T-t,x).
-$
-With time-to-maturity \(\tau=T-t\), the reduced PDE is
-$
+$$
+
+$$
+With time-to-maturity $\tau=T-t$, the reduced PDE is
+$$
+
+$$
 \partial_\tau f
 =\frac12\sigma^2x^2\partial_{xx}f
 -\left(\frac1T+rx\right)\partial_xf,
 \qquad f(0,x)=(-1-x)^+.
-$
+$$
+
+$$
 Recover the time-zero price from
-$
+$$
+
+$$
 V_0=S_0 f(T,0).
-$
+$$
+
+$$
 
 The solver uses a truncated interval [x_min, x_max], with x_min strictly negative. The left boundary is the affine asymptotic solution
-$
+$$
+
+$$
 f(\tau,x_{\min})=-e^{-r\tau}x_{\min}
 +\frac{1-e^{-r\tau}}{rT}-1,
-$
+$$
+
+$$
 and the right boundary is set to zero. For r=0, the fraction has limit tau/T.
 
 **Domain warning:** the transformed state is non-positive in the original model. Setting x_min=0 removes the negative states and is not a suitable production pricing domain. Check sensitivity by moving x_min further left and increasing x_max.
