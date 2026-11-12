@@ -69,6 +69,7 @@ python -m venv .venv
 # macOS/Linux:
 source .venv/bin/activate
 pip install -r requirements.txt
+pip install -e .
 ~~~
 
 ## Quick start
@@ -94,6 +95,8 @@ print("95% CI:", mc.confidence_interval)
 pytest -q
 python scripts/run_experiments.py
 ~~~
+
+The editable install above makes the src-layout package importable from the examples and tests.
 
 The experiment script writes the following to results/:
 - PDE versus Monte Carlo comparison with Monte Carlo confidence interval;
